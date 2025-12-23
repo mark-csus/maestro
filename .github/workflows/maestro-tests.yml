@@ -63,7 +63,7 @@ jobs:
             adb shell settings put global transition_animation_scale 0
             adb shell settings put global animator_duration_scale 0
             sleep 5
-            $HOME/.maestro/bin/maestro test .maestro/tests/
+            $HOME/.maestro/bin/maestro test --format junit --output /tmp/maestro-results .maestro/tests/ || true
       
       - name: Upload test results
         if: always()
@@ -71,14 +71,19 @@ jobs:
         with:
           name: maestro-test-results
           path: |
-            ~/.maestro/tests/
-            **/maestro-*.mp4
+            /tmp/maestro-results/
+            **/*.png
+            **/*.mp4
           retention-days: 30
+          if-no-files-found: ignore
       
       - name: Upload screenshots on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: maestro-screenshots
-          path: ~/.maestro/screenshots/
+          path: |
+            **/*.png
+            /tmp/maestro-results/**/*.png
           retention-days: 30
+          if-no-files-found: ignore

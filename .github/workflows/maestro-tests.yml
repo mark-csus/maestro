@@ -58,13 +58,12 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-            export PATH="$PATH:$HOME/.maestro/bin"
             adb devices
             adb shell settings put global window_animation_scale 0
             adb shell settings put global transition_animation_scale 0
             adb shell settings put global animator_duration_scale 0
             sleep 5
-            maestro test .maestro/tests/open-settings.yaml
+            $HOME/.maestro/bin/maestro test .maestro/tests/open-settings.yaml
       
       - name: Upload test results
         if: always()

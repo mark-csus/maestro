@@ -11,7 +11,7 @@ on:
 
 jobs:
   maestro-tests:
-    runs-on: macos-latest
+    runs-on: macos-13
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     
     steps:
@@ -40,16 +40,16 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: avd-30-macos
+          key: avd-30-macos-13
       
       - name: Run Maestro Tests with Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
-          arch: arm64-v8a
+          arch: x86_64
           target: google_apis
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -no-audio -no-boot-anim -camera-back none
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
             adb devices

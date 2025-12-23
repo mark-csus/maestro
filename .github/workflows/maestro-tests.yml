@@ -63,7 +63,7 @@ jobs:
             adb shell settings put global transition_animation_scale 0
             adb shell settings put global animator_duration_scale 0
             sleep 5
-            $HOME/.maestro/bin/maestro test .maestro/tests/open-settings.yaml
+            $HOME/.maestro/bin/maestro test .maestro/tests/
       
       - name: Upload test results
         if: always()

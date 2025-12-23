@@ -6,4 +6,4 @@ appId: com.android.settings
 # This test verifies that the Android Settings app can be launched successfully
 
 - launchApp
-- assertVisible: "chrome"
+- assertVisible: "crocodile123"

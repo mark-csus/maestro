@@ -30,7 +30,8 @@ jobs:
       - name: Install Maestro
         run: |
           curl -Ls "https://get.maestro.mobile.dev" | bash
-          echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+          export PATH="$PATH:$HOME/.maestro/bin"
+          maestro --version
       
       - name: AVD cache
         uses: actions/cache@v4
@@ -39,21 +40,9 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: avd-30
+          key: avd-30-macos
       
-      - name: Create AVD and generate snapshot for caching
-        if: steps.avd-cache.outputs.cache-hit != 'true'
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          arch: x86_64
-          target: google_apis
-          force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: true
-          script: echo "Generated AVD snapshot for caching."
-      
-      - name: Run Maestro Tests
+      - name: Run Maestro Tests with Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
@@ -63,7 +52,7 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-            adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+            export PATH="$PATH:$HOME/.maestro/bin"
             adb devices
             maestro test .maestro/tests/
       

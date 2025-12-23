@@ -1,0 +1,8 @@
+# Maestro Configuration
+# Learn more: https://maestro.mobile.dev/
+
+# Default timeout for commands (in milliseconds)
+defaultTimeout: 30000
+
+# Enable screenshots on failure
+screenshotsOnFailure: true

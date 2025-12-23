@@ -1,0 +1,9 @@
+appId: com.android.settings
+
+---
+
+# Test: Open Android Settings App
+# This test verifies that the Android Settings app can be launched successfully
+
+- launchApp
+- assertVisible: "Settings"

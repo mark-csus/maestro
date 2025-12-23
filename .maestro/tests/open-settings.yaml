@@ -6,4 +6,5 @@ appId: com.android.settings
 # This test verifies that the Android Settings app can be launched successfully
 
 - launchApp
-- assertVisible: "Settings"
+- assertVisible:
+    id: "com.android.settings:id/main_content"

@@ -29,8 +29,8 @@ jobs:
       
       - name: Install Maestro
         run: |
-          curl -Ls "https://get.maestro.mobile.dev" | bash
-          export PATH="$PATH:$HOME/.maestro/bin"
+          brew tap mobile-dev-inc/tap
+          brew install maestro
           maestro --version
       
       - name: AVD cache
@@ -46,15 +46,18 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
-          arch: x86_64
+          arch: arm64-v8a
           target: google_apis
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-snapshot-save -no-window -no-audio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-            export PATH="$PATH:$HOME/.maestro/bin"
             adb devices
-            maestro test .maestro/tests/
+            adb shell settings put global window_animation_scale 0
+            adb shell settings put global transition_animation_scale 0
+            adb shell settings put global animator_duration_scale 0
+            sleep 5
+            maestro test .maestro/tests/open-settings.yaml
       
       - name: Upload test results
         if: always()

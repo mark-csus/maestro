@@ -1,0 +1,32 @@
+appId: com.android.settings
+
+# Use onFlowStart to initialize variables before flow begins (SETUP)
+onFlowStart:
+  - runScript: .maestro/scripts/set-env.js TEST_RUN_ID=${UUID} START_TIME=${timestamp} USERNAME=testuser@example.com
+
+# Use onFlowComplete to clean up after flow completes (TEARDOWN)
+onFlowComplete:
+  - runScript: .maestro/scripts/clear-env.js
+
+---
+
+# Example: Using Environment Variables in Maestro Flows
+# This demonstrates proper setup/teardown with environment variables
+
+- launchApp
+
+- assertVisible: "Settings"
+
+# Add more variables during the flow as needed
+- runScript: .maestro/scripts/set-env.js USER_ACTION=opened_settings SCREEN=main
+
+- tapOn: "Network & internet"
+
+# Update variables on specific actions
+- runScript: .maestro/scripts/set-env.js LAST_SCREEN=network USER_ACTION=navigated
+
+# Print current state
+- runScript: .maestro/scripts/print-env.js
+
+# Note: onFlowComplete will automatically clear ALL variables
+# This ensures each test starts with a clean environment

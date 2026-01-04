@@ -1,0 +1,11 @@
+appId: com.android.chrome
+
+---
+
+# Test: Intentional Failure Example
+# This test is designed to fail to demonstrate automatic failure reporting
+# The actual failure will be captured and reported via JUnit XML
+
+- launchApp
+- assertVisible:
+    text: "This element does not exist"

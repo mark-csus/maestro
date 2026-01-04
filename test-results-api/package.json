@@ -1,0 +1,21 @@
+{
+  "name": "maestro-test-results-api",
+  "version": "1.0.0",
+  "description": "Simple API server to track Maestro test execution results",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js 3000"
+  },
+  "keywords": [
+    "maestro",
+    "testing",
+    "api",
+    "test-results"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

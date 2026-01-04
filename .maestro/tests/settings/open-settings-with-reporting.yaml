@@ -1,0 +1,11 @@
+appId: com.android.settings
+
+---
+
+# Test: Open Android Settings App with API Reporting
+# Results are automatically reported via JUnit XML post-processing
+# Run with: ./run-tests.sh .maestro/tests/settings/open-settings-with-reporting.yaml
+
+- launchApp
+- assertVisible:
+    id: "com.android.settings:id/main_content"

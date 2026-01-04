@@ -1,0 +1,19 @@
+appId: com.android.settings
+
+---
+
+# Test: Settings Search Functionality
+# Verifies that the search feature works in Settings
+# Results are automatically determined from actual test execution
+
+- launchApp
+- assertVisible:
+    id: "com.android.settings:id/main_content"
+
+# Try to tap search icon
+- tapOn: "Search settings"
+- assertVisible: "Search"
+
+# Type in search box
+- inputText: "Display"
+- assertVisible: "Display"

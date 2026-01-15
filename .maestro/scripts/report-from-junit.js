@@ -23,13 +23,13 @@ const url = require('url');
 const junitFile = process.argv[2];
 
 if (!junitFile) {
-  console.error('❌ Error: JUnit XML file path is required');
+  console.error('Error: JUnit XML file path is required');
   console.error('Usage: node report-from-junit.js <junit-xml-file>');
   process.exit(1);
 }
 
 if (!fs.existsSync(junitFile)) {
-  console.error(`❌ Error: File not found: ${junitFile}`);
+  console.error(`Error: File not found: ${junitFile}`);
   process.exit(1);
 }
 
@@ -180,7 +180,7 @@ async function processJUnitResults() {
         
         await makeRequest('/test-result', payload);
         
-        const icon = result.status === 'pass' ? '✅' : '❌';
+        const icon = result.status === 'pass' ? '[PASS]' : '[FAIL]';
         console.log(`   ${icon} ${result.testName} - ${result.status.toUpperCase()}`);
         if (result.failureMessage) {
           console.log(`      ↳ ${result.failureMessage}`);

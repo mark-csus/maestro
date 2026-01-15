@@ -184,8 +184,8 @@ server.listen(PORT, () => {
   console.log('╔════════════════════════════════════════════════╗');
   console.log('║   Maestro Test Results API Server             ║');
   console.log('╚════════════════════════════════════════════════╝');
-  console.log(`\n🚀 Server running on http://localhost:${PORT}`);
-  console.log('\n📚 Available endpoints:');
+  console.log(`\nServer running on http://localhost:${PORT}`);
+  console.log('\nAvailable endpoints:');
   console.log(`   POST   http://localhost:${PORT}/test-result`);
   console.log(`   GET    http://localhost:${PORT}/test-result/:testId`);
   console.log(`   GET    http://localhost:${PORT}/test-results`);

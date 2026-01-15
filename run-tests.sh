@@ -36,15 +36,15 @@ echo -e "${BLUE}╔════════════════════�
 echo -e "${BLUE}║   Maestro Test Runner with API Reporting      ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════╝${NC}"
 echo ""
-echo -e "${BLUE}🔍 Test Path:${NC} ${TEST_PATH}"
-echo -e "${BLUE}🆔 Run ID:${NC} ${TEST_RUN_ID}"
-echo -e "${BLUE}📊 JUnit Output:${NC} ${JUNIT_OUTPUT}"
-echo -e "${BLUE}🌐 API URL:${NC} ${API_URL}"
+echo -e "${BLUE}Test Path:${NC} ${TEST_PATH}"
+echo -e "${BLUE}Run ID:${NC} ${TEST_RUN_ID}"
+echo -e "${BLUE}JUnit Output:${NC} ${JUNIT_OUTPUT}"
+echo -e "${BLUE}API URL:${NC} ${API_URL}"
 echo ""
 
 # Check if maestro is installed
 if ! command -v maestro &> /dev/null; then
-    echo -e "${RED}❌ Error: maestro is not installed${NC}"
+    echo -e "${RED}Error: maestro is not installed${NC}"
     echo "Please install maestro: https://maestro.mobile.dev/"
     exit 1
 fi
@@ -77,11 +77,11 @@ echo ""
 
 # Check if JUnit XML was generated
 if [ ! -f "${JUNIT_OUTPUT}" ]; then
-    echo -e "${RED}❌ Error: JUnit XML file was not generated${NC}"
+    echo -e "${RED}Error: JUnit XML file was not generated${NC}"
     exit 1
 fi
 
-echo -e "${GREEN}✅ Tests completed (exit code: ${MAESTRO_EXIT_CODE})${NC}"
+echo -e "${GREEN}Tests completed (exit code: ${MAESTRO_EXIT_CODE})${NC}"
 echo ""
 
 # Report results to API
@@ -90,9 +90,9 @@ if [ "$SKIP_REPORTING" != "true" ]; then
     echo ""
     
     if node .maestro/scripts/report-from-junit.js "${JUNIT_OUTPUT}"; then
-        echo -e "${GREEN}✅ Results successfully reported to API${NC}"
+        echo -e "${GREEN}Results successfully reported to API${NC}"
     else
-        echo -e "${YELLOW}⚠️  Failed to report results to API${NC}"
+        echo -e "${YELLOW}Failed to report results to API${NC}"
     fi
 else
     echo -e "${YELLOW}⏭️  Skipping API reporting (SKIP_API_REPORTING=true)${NC}"

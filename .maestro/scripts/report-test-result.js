@@ -31,7 +31,7 @@ const detailsArg = args[2] || '';
 
 // Validate status
 if (!status || !['pass', 'fail'].includes(status)) {
-  console.error('❌ Error: First argument must be PASS or FAIL');
+  console.error('Error: First argument must be PASS or FAIL');
   console.error('Usage: node report-test-result.js <PASS|FAIL> [testName] [details]');
   process.exit(1);
 }
@@ -106,7 +106,7 @@ function makeRequest(endpoint, data) {
 // Report test result
 async function reportTestResult() {
   try {
-    console.log(`\n📊 Reporting test result to API...`);
+    console.log(`\nReporting test result to API...`);
     console.log(`   Test: ${testName}`);
     console.log(`   Status: ${status.toUpperCase()}`);
     console.log(`   API: ${API_BASE_URL}`);
@@ -114,9 +114,9 @@ async function reportTestResult() {
     const response = await makeRequest('/test-result', testResult);
 
     if (status === 'pass') {
-      console.log(`✅ Test result reported successfully: PASSED`);
+      console.log(`Test result reported successfully: PASSED`);
     } else {
-      console.log(`❌ Test result reported successfully: FAILED`);
+      console.log(`Test result reported successfully: FAILED`);
       if (detailsArg) {
         console.log(`   Details: ${detailsArg}`);
       }
@@ -133,7 +133,7 @@ async function reportTestResult() {
     }
 
   } catch (error) {
-    console.error(`\n⚠️  Failed to report test result to API:`);
+    console.error(`\nFailed to report test result to API:`);
     console.error(`   Error: ${error.message}`);
     console.error(`   Make sure the test results API server is running at ${API_BASE_URL}`);
     

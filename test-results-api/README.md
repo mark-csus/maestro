@@ -4,11 +4,11 @@ A simple Node.js API server that tracks test execution results for Maestro mobil
 
 ## Features
 
-- ✅ **Track Test Results**: Report PASS/FAIL status for each test execution
-- 🔍 **Query Results**: Retrieve individual or all test results
-- 📊 **Test Summary**: Get statistics on total, passed, and failed tests
-- 🚀 **Simple Setup**: No database required - runs in-memory
-- 🔄 **Real-time Updates**: Instant result tracking as tests complete
+- **Track Test Results**: Report PASS/FAIL status for each test execution
+- **Query Results**: Retrieve individual or all test results
+- **Test Summary**: Get statistics on total, passed, and failed tests
+- **Simple Setup**: No database required - runs in-memory
+- **Real-time Updates**: Instant result tracking as tests complete
 
 ## Quick Start
 

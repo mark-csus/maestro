@@ -28,7 +28,7 @@ const args = process.argv.slice(2);
 const testId = args[0];
 
 if (!testId) {
-  console.error('❌ Error: Test ID is required');
+  console.error('Error: Test ID is required');
   console.error('Usage: node get-test-result.js <testId|ALL>');
   process.exit(1);
 }
@@ -82,7 +82,7 @@ function makeRequest(endpoint) {
 // Get test result
 async function getTestResult() {
   try {
-    console.log(`\n🔍 Retrieving test result from API...`);
+    console.log(`\nRetrieving test result from API...`);
     console.log(`   Test ID: ${testId}`);
     console.log(`   API: ${API_BASE_URL}`);
 
@@ -107,12 +107,12 @@ async function getTestResult() {
       if (response.results && response.results.length > 0) {
         console.log(`\n   Recent results:`);
         response.results.slice(-5).forEach((result) => {
-          const icon = result.status === 'pass' ? '✅' : '❌';
+          const icon = result.status === 'pass' ? '[PASS]' : '[FAIL]';
           console.log(`   ${icon} ${result.testName} - ${result.status}`);
         });
       }
     } else {
-      const icon = response.status === 'pass' ? '✅' : '❌';
+      const icon = response.status === 'pass' ? '[PASS]' : '[FAIL]';
       console.log(`   ${icon} Status: ${response.status.toUpperCase()}`);
       console.log(`   Test: ${response.testName}`);
       console.log(`   Time: ${response.timestamp}`);
@@ -124,7 +124,7 @@ async function getTestResult() {
     }
 
   } catch (error) {
-    console.error(`\n⚠️  Failed to retrieve test result from API:`);
+    console.error(`\nFailed to retrieve test result from API:`);
     console.error(`   Error: ${error.message}`);
     
     // Set error output for Maestro

@@ -1,0 +1,6 @@
+appId: com.example.app
+---
+# Test the shake_device JavaScript function
+
+- runScript: ../../scripts/api-client/shake-device.js
+- assertVisible: ".*"

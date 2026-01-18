@@ -1,0 +1,18 @@
+appId: com.maestro.api
+---
+# Reusable flow to set MAESTRO_USERNAME environment variable
+# 
+# Input parameters (pass via --env):
+#   USERNAME: The username to set (required)
+#
+# Usage example:
+#   - runFlow:
+#       file: .maestro/common-flows/device/set-username.yaml
+#       env:
+#         USERNAME: "testuser123"
+
+- http:
+    url: http://localhost:3001/set_username
+    method: POST
+    body:
+      username: ${USERNAME}

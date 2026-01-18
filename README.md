@@ -2,6 +2,36 @@
 
 A complete boilerplate project for [Maestro](https://maestro.mobile.dev/) mobile UI testing with built-in test result tracking, CI/CD integration, and example test flows. Perfect for quickly setting up mobile automation for iOS and Android apps.
 
+## Project Structure
+
+```
+maestro/
+├── .maestro/
+│   ├── config.yaml
+│   ├── scripts/
+│   │   ├── api-client/          # JavaScript clients for API server
+│   │   │   ├── shake-device.js
+│   │   │   ├── set-username.js
+│   │   │   ├── restart-services.js
+│   │   │   └── README.md
+│   │   ├── set-env.js           # Environment management
+│   │   ├── get-env.js
+│   │   ├── clear-env.js
+│   │   └── report-*.js          # Test result reporting
+│   └── tests/
+│       ├── api-integration/     # Tests using API server
+│       │   └── shake-device.yaml
+│       ├── settings/
+│       └── chrome/
+├── api-server/                  # Local API for extended functionality
+│   ├── server.py
+│   ├── requirements.txt
+│   └── README.md
+└── test-results-api/            # Test result tracking API
+    ├── server.js
+    └── package.json
+```
+
 ## Usage
 
 ### 1. Start the Test Results API (Optional)

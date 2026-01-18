@@ -1,0 +1,30 @@
+appId: com.maestro.api
+---
+# Reusable flow to upload test results to TestRail
+# 
+# Input parameters (pass via --env):
+#   TESTRAIL_RUN_ID: TestRail run ID to upload results to (required)
+#   TESTRAIL_CASE_ID: Test case ID (required)
+#   TESTRAIL_STATUS_ID: Status ID - 1=Passed, 5=Failed (required)
+#   TESTRAIL_COMMENT: Comment/message for the result (optional)
+#   TESTRAIL_ELAPSED: Time elapsed (e.g., "30s", "2m") (optional)
+#
+# Usage example:
+#   - runFlow:
+#       file: .maestro/common-flows/testrail/upload-results.yaml
+#       env:
+#         TESTRAIL_RUN_ID: 123
+#         TESTRAIL_CASE_ID: 456
+#         TESTRAIL_STATUS_ID: 1
+#         TESTRAIL_COMMENT: "Test passed successfully"
+#         TESTRAIL_ELAPSED: "45s"
+
+- runScript:
+    file: .maestro/common-flows/testrail/testrail-client.js
+    args:
+      - add-result
+      - ${TESTRAIL_RUN_ID}
+      - ${TESTRAIL_CASE_ID}
+      - ${TESTRAIL_STATUS_ID}
+      - ${TESTRAIL_COMMENT}
+      - ${TESTRAIL_ELAPSED}

@@ -1,0 +1,25 @@
+appId: com.maestro.api
+---
+# Reusable flow to create a TestRail test run
+# 
+# Input parameters (pass via --env):
+#   TESTRAIL_PROJECT_ID: TestRail project ID (required)
+#   TESTRAIL_SUITE_ID: TestRail suite ID (optional)
+#   TEST_RUN_NAME: Name for the test run (optional, defaults to timestamped name)
+#   TEST_RUN_DESCRIPTION: Description for the test run (optional)
+#
+# Usage example:
+#   - runFlow:
+#       file: .maestro/common-flows/testrail/create-run.yaml
+#       env:
+#         TESTRAIL_PROJECT_ID: 1
+#         TESTRAIL_SUITE_ID: 2
+#         TEST_RUN_NAME: "Smoke Test Run"
+
+- runScript:
+    file: .maestro/common-flows/testrail/testrail-client.js
+    args:
+      - create-run
+      - ${TESTRAIL_PROJECT_ID}
+      - ${TEST_RUN_NAME}
+      - ${TEST_RUN_DESCRIPTION}

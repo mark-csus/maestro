@@ -1,0 +1,12 @@
+appId: com.maestro.api
+---
+# Reusable flow to shake the connected Android device
+# Opens the React Native developer menu
+#
+# Usage example:
+#   - runFlow:
+#       file: .maestro/common-flows/device/shake-device.yaml
+
+- http:
+    url: http://localhost:3001/shake_device
+    method: POST

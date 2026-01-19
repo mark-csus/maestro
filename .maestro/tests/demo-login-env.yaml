@@ -2,11 +2,11 @@ appId: com.android.settings
 
 # Use onFlowStart to set credentials before the flow begins (SETUP)
 onFlowStart:
-  - runScript: .maestro/scripts/set-env.js USERNAME=testuser@example.com PASSWORD=SecurePass123! TEST_RUN_ID=${UUID}
+  - runScript: .maestro/scripts/config/set-env.js USERNAME=testuser@example.com PASSWORD=SecurePass123! TEST_RUN_ID=${UUID}
 
 # Use onFlowComplete to clear variables after flow completes (TEARDOWN)
 onFlowComplete:
-  - runScript: .maestro/scripts/clear-env.js USERNAME PASSWORD TEST_RUN_ID
+  - runScript: .maestro/scripts/config/clear-env.js USERNAME PASSWORD TEST_RUN_ID
 
 ---
 
@@ -14,16 +14,16 @@ onFlowComplete:
 # This demonstrates how to set credentials and print them in the workflow
 
 # Step 1: Print the credentials set by onFlowStart
-- runScript: .maestro/scripts/print-env.js USERNAME PASSWORD
+- runScript: .maestro/scripts/config/print-env.js USERNAME PASSWORD
 
 # Step 2: Print the values to verify they were set
-- runScript: .maestro/scripts/print-env.js USERNAME PASSWORD
+- runScript: .maestro/scripts/config/print-env.js USERNAME PASSWORD
 
 # Step 3: Launch app (simulating a login flow)
 - launchApp
 
 # Step 4: Print all environment variables to see everything set
-- runScript: .maestro/scripts/print-env.js
+- runScript: .maestro/scripts/config/print-env.js
 
 # Note: onFlowComplete will automatically clear all variables after this flow ends
 # This ensures a clean state for the next test run

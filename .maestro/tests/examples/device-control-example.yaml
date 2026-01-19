@@ -1,0 +1,19 @@
+appId: com.example.app
+---
+# Example test showing how to use device control flows
+
+# Set username for the test
+- runFlow:
+    file: ../../common-flows/device/set-username.yaml
+    env:
+      USERNAME: "qa_tester_01"
+
+# Launch the app
+- launchApp
+
+# Shake device to open React Native dev menu
+- runFlow:
+    file: ../../common-flows/device/shake-device.yaml
+
+# Interact with dev menu
+- tapOn: "Reload"

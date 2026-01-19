@@ -1,0 +1,12 @@
+appId: com.maestro.api
+---
+# Reusable flow to restart test services
+# Kills ADB, restarts it, and reboots the connected device
+#
+# Usage example:
+#   - runFlow:
+#       file: .maestro/common-flows/device/restart-test-services.yaml
+
+- http:
+    url: http://localhost:3001/restart_test_services
+    method: POST

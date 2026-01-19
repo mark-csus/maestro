@@ -1,0 +1,18 @@
+maeappId: com.example.app
+---
+# Example: Using API server to set username and shake device
+
+# Set username via API
+- runScript: 
+    file: ../../scripts/api-client/set-username.js
+    env:
+      username: "test_user_123"
+
+# Launch the app
+- launchApp
+
+# Shake device to open developer menu (React Native)
+- runScript: ../../scripts/api-client/shake-device.js
+
+# Verify something is visible (adjust based on your app)
+- assertVisible: ".*"

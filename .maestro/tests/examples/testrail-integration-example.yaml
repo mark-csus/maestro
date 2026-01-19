@@ -1,0 +1,55 @@
+appId: com.maestro.api
+---
+# Example test demonstrating TestRail integration using JavaScript client
+# 
+# This test demonstrates how to:
+# 1. Create a TestRail test run
+# 2. Execute test steps
+# 3. Upload results to TestRail using the JS client
+#
+# Required environment variables:
+#   TESTRAIL_URL - Your TestRail instance URL
+#   TESTRAIL_USER - Your TestRail email
+#   TESTRAIL_API_KEY - Your TestRail API key
+#   TESTRAIL_PROJECT_ID - Your TestRail project ID
+#
+# Optional:
+#   TESTRAIL_RUN_ID - Use existing run instead of creating new one
+
+# Step 1: Create a test run (skip if TESTRAIL_RUN_ID is provided)
+- runFlow:
+    when: ${TESTRAIL_RUN_ID == null}
+    file: ../../common-flows/testrail/create-run.yaml
+    env:
+      TESTRAIL_PROJECT_ID: ${TESTRAIL_PROJECT_ID}
+      TEST_RUN_NAME: "Maestro Example Run - ${DATE}"
+      TEST_RUN_DESCRIPTION: "Automated test run demonstrating TestRail integration"
+
+# Step 2: Do your actual testing
+- launchApp
+- assertVisible: "com.maestro.api:id/app_name"
+
+# Step 3: Upload result for Test Case 1 (Passed)
+- runFlow:
+    file: ../../common-flows/testrail/upload-results.yaml
+    env:
+      TESTRAIL_RUN_ID: ${TESTRAIL_RUN_ID}
+      TESTRAIL_CASE_ID: 1
+      TESTRAIL_STATUS_ID: 1  # 1 = Passed
+      TESTRAIL_COMMENT: "App launched successfully and main element visible"
+      TESTRAIL_ELAPSED: "5s"
+
+# Step 4: Test API interaction
+- http:
+    url: http://localhost:3001/shake_device
+    method: POST
+
+# Step 5: Upload result for Test Case 2 (Passed)
+- runFlow:
+    file: ../../common-flows/testrail/upload-results.yaml
+    env:
+      TESTRAIL_RUN_ID: ${TESTRAIL_RUN_ID}
+      TESTRAIL_CASE_ID: 2
+      TESTRAIL_STATUS_ID: 1
+      TESTRAIL_COMMENT: "API interaction successful"
+      TESTRAIL_ELAPSED: "2s"

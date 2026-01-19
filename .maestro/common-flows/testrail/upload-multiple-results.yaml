@@ -1,0 +1,18 @@
+appId: com.maestro.api
+---
+# Reusable flow to upload multiple test results to TestRail at once
+# 
+# Note: For multiple results with different data, it's better to use the 
+# API directly in your test flow or create specific result combinations.
+#
+# This example shows the structure for multiple results:
+
+# Note: Pass TESTRAIL_RESULTS_JSON as a JSON string containing an array of results
+# Example: TESTRAIL_RESULTS_JSON='[{"case_id":1,"status_id":1,"comment":"Passed"},{"case_id":2,"status_id":5,"comment":"Failed"}]'
+
+- runScript:
+    file: .maestro/common-flows/testrail/testrail-client.js
+    args:
+      - add-results
+      - ${TESTRAIL_RUN_ID}
+      - ${TESTRAIL_RESULTS_JSON}

@@ -1,6 +1,6 @@
 # Maestro Test Automation Boilerplate
 
-A complete boilerplate project for [Maestro](https://maestro.mobile.dev/) mobile UI testing with built-in test result tracking, CI/CD integration, and example test flows. Perfect for quickly setting up mobile automation for iOS and Android apps.
+Boilerplate project that extends [Maestro](https://maestro.mobile.dev/) mobile UI testing with a local API that runs commands locally. This allows for mobile device interactions using adb, idb, pymobiledevice3, Unix utils, etc. to fill in for some of Maestro's weaknesses.
 
 ## Project Structure
 
